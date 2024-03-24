@@ -1,6 +1,13 @@
 package com.fallinnadim.jobapp.job;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "jobs")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
@@ -8,6 +15,7 @@ public class Job {
     private String maxSalary;
     private String location;
 
+    // Default Constructor for JPA
     public Job() {
     }
 
