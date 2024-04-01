@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:14.11-alpine3.19
+    environment:
+      - POSTGRES_USER=fallinnadim
+      - POSTGRES_PASSWORD=Nadim456*-
+      - POSTGRES_DB=jobapp
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - jobapp
+    ports:
+      - "5432:5432"
+  api:
+    container_name: spring-boot-app
+    image: fallinnadim/jobapp:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - jobapp
+    depends_on:
+      - postgres
+
+networks:
+  jobapp:
+
+volumes:
+  postgres:

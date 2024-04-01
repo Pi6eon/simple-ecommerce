@@ -1,3 +1,0 @@
-- Aplikasi lowongan kerja ini adalah backend service yang dibangun untuk kebutuhan lowongan kerja seperti nama perusahaan, list dan jenis lowongan pekerjaan dan interkoneksi antar calon pencari pekerjaan. 
-- Untuk saat ini Backend service ini menerapkan teknologi REST API menggunakan Springboot App dan masih bersifat monolith.
-- Kedepannya aplikasi akan dikembangkan menggunakan containerization Docker, akan berpindah ke arsitektur Microservices dan menggunakan RabbitMQ + REST template untuk komunikasi internal antar services dan akan di deploy pada cluster AWS EKS.
