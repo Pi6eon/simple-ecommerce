@@ -23,6 +23,10 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	testImplementation("org.testcontainers:mongodb:1.19.7")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	testImplementation("org.testcontainers:junit-jupiter:1.19.7")
+	testImplementation("org.testcontainers:testcontainers:1.19.7")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
