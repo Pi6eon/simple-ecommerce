@@ -1,0 +1,8 @@
+com/fallinnadim/inventoryservice/InventoryServiceApplication.class
+com/fallinnadim/inventoryservice/dto/InventoryResponse.class
+com/fallinnadim/inventoryservice/service/InventoryServiceImpl.class
+com/fallinnadim/inventoryservice/controller/InventoryController.class
+com/fallinnadim/inventoryservice/dto/InventoryResponse$InventoryResponseBuilder.class
+com/fallinnadim/inventoryservice/repository/InventoryRepository.class
+com/fallinnadim/inventoryservice/service/InventoryService.class
+com/fallinnadim/inventoryservice/model/Inventory.class
