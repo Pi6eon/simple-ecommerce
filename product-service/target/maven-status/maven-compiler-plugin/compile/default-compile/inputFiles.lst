@@ -1,9 +1,0 @@
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/dto/ProductResponse.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/service/ProductService.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/service/ProductServiceImpl.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/controller/ProductController.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/model/Product.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/dto/ProductRequest.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/ProductServiceApplication.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/dto/GenericResponse.java
-/home/fallinnadim/Devs/java/real-microservices/product-service/src/main/java/com/fallinnadim/productservice/repository/ProductRepository.java
