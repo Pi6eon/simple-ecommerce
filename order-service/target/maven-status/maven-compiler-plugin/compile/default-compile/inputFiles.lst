@@ -1,9 +1,0 @@
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/service/OrderService.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/dto/OrderLineItemsDto.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/model/OrderLineItems.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/OrderServiceApplication.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/service/OrderServiceImpl.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/controller/OrderController.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/dto/OrderRequest.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/repository/OrderRepository.java
-/home/fallinnadim/Devs/java/real-microservices/order-service/src/main/java/com/fallinnadim/orderservice/model/Order.java

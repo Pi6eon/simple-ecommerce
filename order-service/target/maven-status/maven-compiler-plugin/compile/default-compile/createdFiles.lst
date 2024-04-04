@@ -1,9 +1,0 @@
-com/fallinnadim/orderservice/OrderServiceApplication.class
-com/fallinnadim/orderservice/model/OrderLineItems.class
-com/fallinnadim/orderservice/service/OrderService.class
-com/fallinnadim/orderservice/service/OrderServiceImpl.class
-com/fallinnadim/orderservice/model/Order.class
-com/fallinnadim/orderservice/dto/OrderRequest.class
-com/fallinnadim/orderservice/controller/OrderController.class
-com/fallinnadim/orderservice/repository/OrderRepository.class
-com/fallinnadim/orderservice/dto/OrderLineItemsDto.class
