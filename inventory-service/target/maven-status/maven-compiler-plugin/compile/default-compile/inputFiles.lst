@@ -1,7 +1,0 @@
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/dto/InventoryResponse.java
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/service/InventoryServiceImpl.java
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/model/Inventory.java
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/service/InventoryService.java
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/InventoryServiceApplication.java
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/controller/InventoryController.java
-/home/fallinnadim/Devs/java/real-microservices/inventory-service/src/main/java/com/fallinnadim/inventoryservice/repository/InventoryRepository.java
