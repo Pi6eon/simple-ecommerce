@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
-    private final WebClient webClient; // Bean
+    private final WebClient.Builder webClientBuilder; // Bean
     @Override
     public void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
         List<String> skuCodes = order.getOrderLineItemsList().stream().map(OrderLineItems::getSkuCode).toList();
 
         // Call Inventory Service and place order if product is in stock
-        InventoryResponse[] inventoryResponsesArray = webClient.get()
+        InventoryResponse[] inventoryResponsesArray = webClientBuilder.build().get()
                 .uri("http://localhost:8082/api/inventories",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
