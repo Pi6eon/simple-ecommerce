@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
         // Call Inventory Service and place order if product is in stock
         InventoryResponse[] inventoryResponsesArray = webClientBuilder.build().get()
-                .uri("http://localhost:8082/api/inventories",
+                .uri("http://inventory-service/api/inventories",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
