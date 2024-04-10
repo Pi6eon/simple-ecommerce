@@ -3,11 +3,13 @@ package com.fallinnadim.orderservice.service;
 import com.fallinnadim.orderservice.dto.InventoryResponse;
 import com.fallinnadim.orderservice.dto.OrderLineItemsDto;
 import com.fallinnadim.orderservice.dto.OrderRequest;
+import com.fallinnadim.orderservice.event.OrderPlacedEvent;
 import com.fallinnadim.orderservice.model.Order;
 import com.fallinnadim.orderservice.model.OrderLineItems;
 import com.fallinnadim.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder; // Bean
+    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
     @Override
     public String placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -54,6 +57,8 @@ public class OrderServiceImpl implements OrderService {
             throw new IllegalArgumentException("Product is not in stock, please try again");
         }
         orderRepository.save(order);
+        // Kafka event
+        kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
         return "Order successfully added";
 
     }
