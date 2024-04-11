@@ -16,11 +16,9 @@ import java.util.List;
 @Slf4j
 public class InventoryController {
     private final InventoryService inventoryService;
-    // http://localhost:8082/api/inventories?skuCode=Iphone14Pro&skuCode=Iphone15Pro
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode) {
-        log.info("Received inventory check request for skuCode: {}", skuCode);
-        return inventoryService.isInStock(skuCode);
+    public boolean isInStock(@RequestParam String skuCode, @RequestParam Integer quantity) {
+        return inventoryService.isInStock(skuCode, quantity);
     }
 }

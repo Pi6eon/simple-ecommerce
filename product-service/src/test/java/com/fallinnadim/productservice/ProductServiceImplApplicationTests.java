@@ -1,62 +1,51 @@
 package com.fallinnadim.productservice;
 
-import com.fallinnadim.productservice.dto.ProductRequest;
-import com.fallinnadim.productservice.repository.ProductRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Assertions;
+import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.math.BigDecimal;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@SpringBootTest
-@Testcontainers
-@AutoConfigureMockMvc
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ProductServiceImplApplicationTests {
 	// Start mongoDBContainer
-	@Container
+	@ServiceConnection
 	static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:7.0.7-rc2");
-	@Autowired
-	private MockMvc mockMvc;
-	@Autowired
-	private ObjectMapper objectMapper;
-	@Autowired
-	private ProductRepository productRepository;
 
-	// set properties
-	@DynamicPropertySource
-	static void setProperties (DynamicPropertyRegistry dynamicPropertyRegistry) {
-		dynamicPropertyRegistry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+	@LocalServerPort
+	private Integer port;
+
+	@BeforeEach
+	void setup() {
+		RestAssured.baseURI = "http://localhost";
+		RestAssured.port = port;
+	}
+
+	static {
+		mongoDBContainer.start();
 	}
 
 	@Test
-	void shouldCreateProduct() throws Exception {
-		ProductRequest productRequest = getProdutRequest();
-		String productRequestString = objectMapper.writeValueAsString((productRequest));
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/products")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(productRequestString))
-				.andExpect(status().isCreated());
-		Assertions.assertEquals(1, productRepository.findAll().size());
-	}
-
-	private ProductRequest getProdutRequest() {
-		return ProductRequest.builder()
-				.name("Iphone 14 Pro")
-				.description("the last phone my parent bought me")
-				.price(BigDecimal.valueOf(1400))
-				.build();
+	void shouldCreateProduct() {
+		String requestBody = """
+				{
+					"name":"Go Land",
+					"description":"free go land for 1 year",
+					"price":4000000
+				}
+				""";
+		RestAssured.given().contentType("application/json")
+				.body(requestBody)
+				.when()
+				.post("api/products")
+				.then()
+				.statusCode(201)
+				.body("id", Matchers.notNullValue())
+				.body("name", Matchers.equalTo("Go Land"))
+				.body("description", Matchers.equalTo("free go land for 1 year"))
+				.body("price", Matchers.equalTo(4000000));
 	}
 }

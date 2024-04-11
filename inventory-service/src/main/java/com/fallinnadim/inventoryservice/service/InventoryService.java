@@ -6,6 +6,6 @@ import com.fallinnadim.inventoryservice.model.Inventory;
 import java.util.List;
 
 public interface InventoryService {
-    List<InventoryResponse> isInStock(List<String> skuCode);
+    boolean isInStock(String skuCode, Integer quantity);
 
     }

@@ -1,0 +1,13 @@
+version: '4'
+services:
+  mongodb:
+    image: postgres:14.11-alpine3.19
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=fallinnadim
+      - POSTGRES_PASSWORD=Nadim456*-
+    volumes:
+      - ./data-volume:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql

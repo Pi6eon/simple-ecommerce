@@ -1,6 +1,38 @@
 ---
 version: '3.8'
 services:
+  ## postgres-order
+
+  ## postgres-inventory
+
+  ## mongo-product
+
+  ## keycloak-mysql
+
+  ## keycloak
+
+  ## zookeeper
+
+  ## broker
+
+  ## zipkin
+
+  ## discovery-server
+
+  ## api-gateway
+
+  ## product-service
+
+  ## order-service
+
+  ## inventory-service
+
+  ## notification-service
+
+  ## prometheus
+
+  ## grafana
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     container_name: zookeeper

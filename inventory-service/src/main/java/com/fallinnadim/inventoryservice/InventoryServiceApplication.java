@@ -14,19 +14,4 @@ public class InventoryServiceApplication {
 		SpringApplication.run(InventoryServiceApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner loadData(InventoryRepository inventoryRepository) {
-		return args -> {
-			Inventory inventory = new Inventory();
-			inventory.setSkuCode("iphone 14 pro");
-			inventory.setQuantity(0);
-
-			Inventory inventory1 = new Inventory();
-			inventory1.setSkuCode("iphone 15 pro");
-			inventory1.setQuantity(99);
-			inventoryRepository.save(inventory);
-			inventoryRepository.save(inventory1);
-		};
-	}
-
 }

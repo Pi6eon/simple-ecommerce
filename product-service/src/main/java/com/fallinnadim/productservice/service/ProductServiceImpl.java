@@ -1,8 +1,8 @@
 package com.fallinnadim.productservice.service;
 
+import com.fallinnadim.productservice.dto.ProductRequest;
 import com.fallinnadim.productservice.dto.ProductResponse;
 import com.fallinnadim.productservice.repository.ProductRepository;
-import com.fallinnadim.productservice.dto.ProductRequest;
 import com.fallinnadim.productservice.model.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,28 +16,22 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
 
-    public String createProduct(ProductRequest productRequest) {
+    public ProductResponse createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
-                .name(productRequest.getName())
-                .description(productRequest.getDescription())
-                .price(productRequest.getPrice())
+                .name(productRequest.name())
+                .description(productRequest.description())
+                .price(productRequest.price())
                 .build();
         productRepository.save(product);
-        return product.getId();
+        log.info("Product created successfully");
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
     }
 
     public List<ProductResponse> getAllProducts() {
-        List<Product> products = productRepository.findAll();
-
-        return products.stream().map(this::mapToProductResponse).toList();
+        return productRepository.findAll().stream().map(this::mapToProductResponse).toList();
     }
 
     private ProductResponse mapToProductResponse(Product product) {
-        return ProductResponse.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .build();
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
     }
 }

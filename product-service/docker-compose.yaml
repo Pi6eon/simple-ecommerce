@@ -1,0 +1,13 @@
+version: '4'
+services:
+  mongodb:
+    image: mongo:7.0.7-rc2
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: fallinnadim
+      MONGO_INITDB_ROOT_PASSWORD: Nadim456*-
+      MONGO_INITDB_DATABASE: product-service
+    volumes:
+      - ./data:/data/db
