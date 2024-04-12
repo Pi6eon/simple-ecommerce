@@ -1,14 +1,15 @@
-package com.fallinnadim.productservice.exception;
+package com.fallinnadim.orderservice.exception;
 
-import com.fallinnadim.productservice.dto.ErrorResponse;
-import com.mongodb.MongoWriteException;
+import com.fallinnadim.orderservice.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -28,20 +29,24 @@ public class GlobalException {
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler(MongoWriteException.class)
-    public Map<String, ErrorResponse> handleMongoConstraint(MongoWriteException exception) {
+    @ExceptionHandler(SQLException.class)
+    public Map<String, ErrorResponse> handlePostgresException(SQLException exception) {
         Map<String, ErrorResponse> errorMap = new HashMap<>();
-        // Get The Error mongo code
-        if (exception.getError().getCode() == 11000) {
-            // Parse the field error from message
-            String errorMessage = exception.getError().getMessage();
-            Pattern pattern = Pattern.compile("index: (.*?) dup key");
-            Matcher matcher = pattern.matcher(errorMessage);
-            if (matcher.find()) {
-                String field = matcher.group(1);
-                errorMap.put("error", new ErrorResponse(field + " field must be unique"));
-            }
+        switch (exception.getSQLState()) {
+            case "23505":
+                // Parse the field error from message
+                String errorMessage = exception.getMessage();
+                Pattern pattern = Pattern.compile("Detail: Key \\((.*?)\\)=");
+                Matcher matcher = pattern.matcher(errorMessage);
+                if (matcher.find()) {
+                    String field = matcher.group(1);
+                    errorMap.put("error", new ErrorResponse(field + " field must be unique"));
+                }
+                return errorMap;
+            default:
+                return errorMap;
+
         }
-        return errorMap;
+
     }
 }

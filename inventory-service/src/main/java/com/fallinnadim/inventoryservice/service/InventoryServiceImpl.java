@@ -21,7 +21,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Transactional(readOnly = true)
     @SneakyThrows
     @Override
-    public boolean isInStock(String skuCode, Integer quantity) {
-        return inventoryRepository.existsBySkuCodeAndQuantityIsGreaterThanEqual(skuCode, quantity);
+    public boolean isInStock(String sku_code, Integer quantity) {
+        return inventoryRepository.existsBySkuCodeAndQuantityIsGreaterThanEqual(sku_code, quantity);
     }
 }
