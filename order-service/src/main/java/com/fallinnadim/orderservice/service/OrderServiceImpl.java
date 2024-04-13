@@ -1,5 +1,6 @@
 package com.fallinnadim.orderservice.service;
 
+import com.fallinnadim.orderservice.client.InventoryClient;
 import com.fallinnadim.orderservice.dto.OrderRequest;
 import com.fallinnadim.orderservice.model.Order;
 import com.fallinnadim.orderservice.repository.OrderRepository;
@@ -16,9 +17,17 @@ import java.util.UUID;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final InventoryClient inventoryClient;
 
     @Override
     public void placeOrder(OrderRequest orderRequest) {
+        // Call the inventory service
+        Boolean isProductInStock = inventoryClient.isInStock(orderRequest.sku_code(), orderRequest.quantity());
+
+        if (!isProductInStock) {
+            throw new RuntimeException("product with skuCode " + orderRequest.sku_code() + " is not in stock");
+        }
+
         Order order = Order.builder()
                 .orderNumber(UUID.randomUUID().toString())
                 .price(orderRequest.price())

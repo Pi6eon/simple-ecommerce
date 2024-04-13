@@ -22,6 +22,7 @@ public class InventoryServiceImpl implements InventoryService {
     @SneakyThrows
     @Override
     public boolean isInStock(String sku_code, Integer quantity) {
+        log.info("checking if product in stock");
         return inventoryRepository.existsBySkuCodeAndQuantityIsGreaterThanEqual(sku_code, quantity);
     }
 }
