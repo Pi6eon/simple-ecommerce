@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     private final InventoryClient inventoryClient;
 
     @Override
-    public void placeOrder(OrderRequest orderRequest) {
+    public String placeOrder(OrderRequest orderRequest) {
         // Call the inventory service
         Boolean isProductInStock = inventoryClient.isInStock(orderRequest.sku_code(), orderRequest.quantity());
 
@@ -36,6 +36,6 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderRepository.save(order);
-        log.info("Order Placed Successfully");
+        return("Order Placed Successfully");
     }
 }
