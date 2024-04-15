@@ -2,8 +2,8 @@ package com.fallinnadim.productservice.service;
 
 import com.fallinnadim.productservice.dto.ProductRequest;
 import com.fallinnadim.productservice.dto.ProductResponse;
-import com.fallinnadim.productservice.repository.ProductRepository;
 import com.fallinnadim.productservice.model.Product;
+import com.fallinnadim.productservice.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,6 @@ package com.fallinnadim.productservice.controller;
 
 import com.fallinnadim.productservice.dto.ProductRequest;
 import com.fallinnadim.productservice.dto.ProductResponse;
-import com.fallinnadim.productservice.model.Product;
 import com.fallinnadim.productservice.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
